@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Αλλαγή Χρώματος Σκακιέρας</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+      <div id="chessboard"></div><br>
+      <button onclick="changeColors()">Αλλαγή Χρωμάτων</button>
+
+    <script>
+      var chessboard = document.getElementById("chessboard");
+      var squares = '';  
+      for (var row = 0; row < 8; row++) {
+        for (var col = 0; col < 8; col++) {
+          if ((row + col) % 2 === 1) {
+            squares += '<div class="square black"></div>';
+          } else {
+            squares += '<div class="square"></div>';
+          }
+        }
+        squares += '<br>';
+      } 
+      chessboard.innerHTML = squares;
+
+      function changeColors() {
+        var color = getRandomColor();
+        var blackSquares = document.getElementsByClassName("black");
+
+        for (var i = 0; i < blackSquares.length; i++) {
+          blackSquares[i].innerHTML = '<div class="square" style="background-color:' + color + ';"></div>';
+        }
+      }
+
+      function getRandomColor() {
+        var numbersLettersHex = "0123456789ABCDEF";
+        var colors = "#";
+
+        for (var i = 0; i < 6; i++) {
+          colors += numbersLettersHex[Math.floor(Math.random() * 16)];
+        }
+
+        return colors;       
+      }
+    </script>
+  </body>
+</html>
